@@ -27,7 +27,7 @@ export default class CCFieldValidator {
       expiry: toStatus(expiryValidation),
       cvc: toStatus(cvcValidation),
       name: !!formValues.name ? "valid" : "incomplete",
-      postalCode: this._validatePostalCode(formValues.postalCode),
+      postalCode: 'valid' // this._validatePostalCode(formValues.postalCode),
     }, this._displayedFields);
 
     return {

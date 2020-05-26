@@ -69,10 +69,10 @@ const CardView = props => {
   const isAmex = brand === 'american-express'
   const shouldFlip = () => !isAmex && focused === 'cvc'
 
-  const containerSize = { ...BASE_SIZE, height: BASE_SIZE.height * scale }
+  const containerSize = { ...BASE_SIZE, width: BASE_SIZE.width * scale, height: BASE_SIZE.height * scale }
   const transform = {
     transform: [
-      { scale },
+      { translateX: ((BASE_SIZE.width * (scale - 1) / 2)) },
       { translateY: ((BASE_SIZE.height * (scale - 1) / 2)) },
     ]
   }
@@ -95,10 +95,12 @@ const CardView = props => {
         <ImageBackground
           style={[BASE_SIZE, s.cardFace, transform]}
           source={imageFront}
+          fadeDuration={0}
         >
           <Image
             style={[s.icon]}
             source={Icons[brand]}
+            fadeDuration={0}
           />
           <Text style={[...baseSyle, s.number, !number && s.placeholder, isFocused('number')]}>
             {!number ? placeholder.number : number}
@@ -124,6 +126,7 @@ const CardView = props => {
         <ImageBackground
           style={[BASE_SIZE, s.cardFace, transform]}
           source={imageBack}
+          fadeDuration={0}
         >
           <Text style={[s.baseText, s.cvc, !cvc && s.placeholder, isFocused('cvc')]}>
             {!cvc ? placeholder.cvc : cvc}
